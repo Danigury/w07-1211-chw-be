@@ -20,6 +20,7 @@ const initializeDB = (connectionString) =>
         debug(chalk.red("Couldn't connect to DB"));
         debug(chalk.red(error.message));
         reject(error);
+        return;
       }
       debug(chalk.green("Connection to Database done"));
       resolve();

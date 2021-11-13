@@ -1,10 +1,10 @@
 require("dotenv").config();
-const chalk = require("chalk");
-const morgan = require("morgan");
-const express = require("express");
-
-const debug = require();
 const cors = require("cors");
+
+const debug = require("debug")("users:server");
+const express = require("express");
+const morgan = require("morgan");
+const chalk = require("chalk");
 
 const app = express();
 
@@ -20,17 +20,17 @@ const initializeServer = (port) =>
         debug(chalk.red(`Port ${port} is already in use.`));
       }
 
+      reject();
       debug(chalk.red(error.code));
     });
 
-    reject();
     server.on("close", () => {
       debug(chalk.blue("See ya"));
     });
   });
 
 app.use(morgan("dev"));
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
 module.exports = { initializeServer, app };
