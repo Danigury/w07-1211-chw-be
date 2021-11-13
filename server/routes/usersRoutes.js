@@ -1,5 +1,7 @@
 const express = require("express");
-require("dotenv").config();
+const { validate } = require("express-validation");
+
+const { userLogin, userSignUp } = require("./controllers/loginControllers");
 
 const router = express.Router();
 
