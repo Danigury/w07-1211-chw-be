@@ -1,4 +1,4 @@
-const { notFoundErrorHandler } = require("./error");
+const { notFoundErrorHandler, generalErrorHandler } = require("./error");
 
 const mockRes = () => {
   const res = {};
@@ -16,6 +16,30 @@ describe("Given a notFoundErrorHandler", () => {
 
       expect(res.status).toHaveBeenCalledWith(404);
       expect(res.json).toHaveBeenCalledWith({ error: "Endpoint not found" });
+    });
+  });
+});
+
+describe("Given a generalErrorHandler function", () => {
+  describe("When it receives an object error a code and message", () => {
+    test("Then it should invoke status method with it's code, json and it's message", () => {
+      const res = mockRes();
+      const error = { code: 600, message: "Invalid request" };
+
+      generalErrorHandler(error, null, res);
+      expect(res.status).toHaveBeenCalledWith(600);
+      expect(res.json).toHaveBeenCalledWith({ error: error.message });
+    });
+  });
+
+  describe("When it receives an empty object error and an object res", () => {
+    test("Then it should invoke status method with it's code, json and it's message", () => {
+      const res = mockRes();
+      const error = {};
+
+      generalErrorHandler(error, null, res);
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.json).toHaveBeenCalledWith({ error: "General ERROR" });
     });
   });
 });
