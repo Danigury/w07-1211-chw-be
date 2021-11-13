@@ -5,29 +5,35 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+
   password: {
     type: String,
     required: true,
   },
+
   name: {
     type: String,
     required: true,
   },
+
   age: {
     type: Number,
     required: true,
     max: 130,
     min: 16,
   },
+
   bio: {
     type: String,
     required: true,
     maxlength: 180,
   },
+
   image: {
     type: String,
     required: true,
   },
+
   imageLocal: {
     type: String,
     required: true,
@@ -46,6 +52,6 @@ const userSchema = new Schema({
   },
 });
 
-const User = model("user", userSchema);
+const User = model("User", userSchema, "users");
 
 module.exports = User;
