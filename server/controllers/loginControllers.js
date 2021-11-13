@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const chalk = require("chalk");
 const jwt = require("jsonwebtoken");
 
-const User = require("../../../database/models/user");
+const User = require("../../database/models/user");
 
 const userLogin = async (req, res, next) => {
   const { username, password } = req.body;
