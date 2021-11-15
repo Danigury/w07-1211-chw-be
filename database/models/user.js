@@ -41,13 +41,13 @@ const userSchema = new Schema({
 
   friends: {
     type: [Types.ObjectId],
-    ref: "Users",
+    ref: "User",
     required: true,
   },
 
   enemies: {
     type: [Types.ObjectId],
-    ref: "Users",
+    ref: "User",
     required: true,
   },
 });
