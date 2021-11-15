@@ -6,7 +6,6 @@ const express = require("express");
 const morgan = require("morgan");
 const chalk = require("chalk");
 const loginRoutes = require("./routes/loginRoutes");
-const { userSignUp } = require("./routes/controllers/loginControllers");
 
 const app = express();
 
@@ -34,6 +33,6 @@ const initializeServer = (port) =>
 app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
-app.use("/login", loginRoutes);
-app.use("/register", userSignUp);
+app.use("/socialnetwork", loginRoutes);
+
 module.exports = { initializeServer, app };

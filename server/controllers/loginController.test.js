@@ -136,7 +136,7 @@ describe("Given a userSignUp function", () => {
         json: jest.fn(),
       };
 
-      User.findOne = jest.fn().mockResolvedValue(false);
+      User.findOne = jest.fn().mockResolvedValue();
 
       await userSignUp(req, res);
       console.log(res.json);

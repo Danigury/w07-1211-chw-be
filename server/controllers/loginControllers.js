@@ -8,6 +8,9 @@ const jwt = require("jsonwebtoken");
 const User = require("../../database/models/user");
 
 const userLogin = async (req, res, next) => {
+  debug(chalk.red("Haciendo post /socialnetwork/login"));
+  debug(chalk.red(req.body));
+
   const { username, password } = req.body;
   const user = await User.findOne({ username });
   if (!user) {
@@ -62,6 +65,7 @@ const userSignUp = async (req, res, next) => {
         enemies: [],
       });
       debug(chalk.blue("New user registered"));
+      console.log(createUser);
       res.json(createUser);
     } catch (error) {
       error.message = "Cannot register";
